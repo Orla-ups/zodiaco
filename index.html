@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Signos Zodiacales</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      z-index: 1000;
+      box-shadow: 0 0 15px #0ff;
+    }
+    nav a {
+      color: #f0f;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1em;
+      text-shadow: 0 0 5px #f0f, 0 0 10px #f0f;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    }
+    header {
+      padding: 120px 20px 40px;
+      text-align: center;
+      background: #111;
+      box-shadow: 0 0 20px #0ff;
+    }
+    header h1 {
+      color: #0ff;
+      font-size: 3em;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+    .neon-box {
+      background: #181828;
+      border-radius: 18px;
+      margin: 40px auto 30px auto;
+      max-width: 800px;
+      padding: 32px 24px 24px 24px;
+      box-shadow: 0 0 25px #0ff, 0 0 60px #f0f inset;
+      border: 2px solid #0ff;
+      position: relative;
+      transition: box-shadow 0.3s;
+    }
+    .neon-box h2 {
+      margin-top: 0;
+      color: #f0f;
+      text-shadow: 0 0 12px #0ff, 0 0 22px #f0f;
+      font-size: 2.1em;
+    }
+    .signos-lista {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .signo-card {
+      background: #111;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #0ff44c33;
+      border: 2px solid #0ff;
+      width: 220px;
+      padding: 18px 12px 12px 12px;
+      text-align: center;
+      margin-bottom: 10px;
+      transition: box-shadow 0.2s, border 0.2s;
+    }
+    .signo-card:hover {
+      box-shadow: 0 0 24px #0ff, 0 0 32px #f0f inset;
+      border: 2px solid #f0f;
+    }
+    .signo-card img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 8px #0ff);
+    }
+    .signo-card h3 {
+      margin: 0 0 8px 0;
+      color: #f0f;
+      font-size: 1.2em;
+      text-shadow: 0 0 6px #0ff;
+    }
+    .signo-card p {
+      margin: 0 0 8px 0;
+      color: #fff;
+      font-size: 1em;
+      text-shadow: 0 0 3px #0ff2;
+    }
+    .compatibilidad {
+      margin-top: 10px;
+      font-size: 0.98em;
+      color: #0ff;
+      text-shadow: 0 0 6px #0ff;
+    }
+    .compatibilidad strong {
+      color: #fff200;
+      text-shadow: 0 0 8px #fff200;
+    }
+    footer {
+      background-color: #111;
+      text-align: center;
+      padding: 30px 10px;
+      margin-top: 50px;
+      box-shadow: 0 0 20px #0ff;
+    }
+    footer p {
+      color: #f0f;
+      font-size: 1.1em;
+      text-shadow: 0 0 5px #f0f;
+    }
+    @media (max-width: 900px) {
+      .signos-lista {
+        flex-direction: column;
+        align-items: center;
+      }
+      .signo-card {
+        width: 90%;
+        max-width: 350px;
+      }
+    }
+  .calcula-signo-box {
+    background: #181828;
+    border-radius: 18px;
+    margin: 40px auto 30px auto;
+    max-width: 400px;
+    padding: 32px 24px 24px 24px;
+    box-shadow: 0 0 25px #0ff, 0 0 60px #f0f inset;
+    border: 2px solid #0ff;
+    position: relative;
+    transition: box-shadow 0.3s;
+  }
+  /* Agrega este estilo en tu <style> para .signo-detalle */
+.signos-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  justify-content: center;
+  margin: 40px auto 30px auto;
+  max-width: 900px;
+}
+
+.signo-detalle {
+  background: #181828;
+  border-radius: 16px;
+  border: 2px solid #0ff;
+  box-shadow: 0 0 18px #0ff, 0 0 32px #f0f inset;
+  padding: 22px 18px 16px 18px;
+  margin: 8px;
+  width: 220px;
+  color: #fff;
+  text-align: center;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+.signo-detalle:hover {
+  box-shadow: 0 0 28px #0ff, 0 0 40px #f0f inset;
+  border: 2.5px solid #f0f;
+}
+
+.signo-detalle h3 {
+  color: #f0f;
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px #0ff, 0 0 14px #f0f;
+  font-size: 1.3em;
+}
+
+.signo-detalle p {
+  margin: 7px 0;
+  font-size: 1.05em;
+  text-shadow: 0 0 4px #0ff2;
+}
+
+.signo-detalle strong {
+  color: #fff200;
+  text-shadow: 0 0 8px #fff200;
+}
+  .calcula-signo-box h2 {
+    color: #fff200;
+    text-shadow: 0 0 12px #fff200, 0 0 22px #0ff;
+    margin-top: 0;
+    font-size: 2em;
+  }
+  .calcula-signo-box label {
+    color: #0ff;
+    font-size: 1.1em;
+    text-shadow: 0 0 6px #0ff;
+    margin-bottom: 6px;
+  }
+  .calcula-signo-box input[type="date"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #0ff;
+    background: #222;
+    color: #fff;
+    font-size: 1em;
+    box-shadow: 0 0 8px #0ff44c33;
+    margin-bottom: 12px;
+  }
+  .calcula-signo-box button {
+    padding: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: #0ff;
+    color: #181828;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #f0f inset;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .calcula-signo-box button:hover {
+    background: #f0f;
+    color: #181828;
+  }
+  .calcula-signo-box #resultado-signo {
+    margin-top: 18px;
+    color: #fff;
+    font-size: 1.2em;
+    text-shadow: 0 0 8px #0ff;
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Menú -->
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#signos">Signos</a>
+    <a href="#compatibilidad">Calc. tu Zigno</a>
+    <a href="#Detalles">Detalles del sig.</a>
+  </nav>
+
+  <!-- Encabezado -->
+  <header id="inicio">
+    <h1>Descubre tu Signo Zodiacal</h1>
+  </header>
+
+  <!-- Signos -->
+  <section id="signos">
+    <div class="neon-box">
+      <h2>Signos y Compatibilidad</h2>
+      <ul class="signos-lista">
+        <li class="signo-card">
+          <img src="aries.png" alt="Aries">
+          <h3>Aries</h3>
+          <p>21 marzo - 19 abril</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Leo, Sagitario, Géminis, Acuario</div>
+        </li>
+        <li class="signo-card">
+          <img src="taurus.png" alt="Tauro">
+          <h3>Tauro</h3>
+          <p>20 abril - 20 mayo</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Virgo, Capricornio, Cáncer, Piscis</div>
+        </li>
+        <li class="signo-card">
+          <img src="gemini.png" alt="Géminis">
+          <h3>Géminis</h3>
+          <p>21 mayo - 20 junio</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Libra, Acuario, Aries, Leo</div>
+        </li>
+        <li class="signo-card">
+          <img src="cancer.png" alt="Cáncer">
+          <h3>Cáncer</h3>
+          <p>21 junio - 22 julio</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Escorpio, Piscis, Tauro, Virgo</div>
+        </li>
+        <li class="signo-card">
+          <img src="leo.png" alt="Leo">
+          <h3>Leo</h3>
+          <p>23 julio - 22 agosto</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Aries, Sagitario, Géminis, Libra</div>
+        </li>
+        <li class="signo-card">
+          <img src="virgo.png" alt="Virgo">
+          <h3>Virgo</h3>
+          <p>23 agosto - 22 septiembre</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Tauro, Capricornio, Cáncer, Escorpio</div>
+        </li>
+        <li class="signo-card">
+          <img src="https://img.icons8.com/color/96/000000/libra.png" alt="Libra">
+          <h3>Libra</h3>
+          <p>23 septiembre - 22 octubre</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Géminis, Acuario, Leo, Sagitario</div>
+        </li>
+        <li class="signo-card">
+          <img src="scorpio.png" alt="Escorpio">
+          <h3>Escorpio</h3>
+          <p>23 octubre - 21 noviembre</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Cáncer, Piscis, Virgo, Capricornio</div>
+        </li>
+        <li class="signo-card">
+          <img src="sagittarius.png" alt="Sagitario">
+          <h3>Sagitario</h3>
+          <p>22 noviembre - 21 diciembre</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Aries, Leo, Libra, Acuario</div>
+        </li>
+        <li class="signo-card">
+          <img src="capricorn.png" alt="Capricornio">
+          <h3>Capricornio</h3>
+          <p>22 diciembre - 19 enero</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Tauro, Virgo, Escorpio, Piscis</div>
+        </li>
+        <li class="signo-card">
+          <img src="aquarius.png" alt="Acuario">
+          <h3>Acuario</h3>
+          <p>20 enero - 18 febrero</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Géminis, Libra, Aries, Sagitario</div>
+        </li>
+        <li class="signo-card">
+          <img src="pisces.png" alt="Piscis">
+          <h3>Piscis</h3>
+          <p>19 febrero - 20 marzo</p>
+          <div class="compatibilidad"><strong>Compatibles:</strong> Cáncer, Escorpio, Tauro, Capricornio</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Compatibilidad (puedes agregar más info aquí si lo deseas) -->
+  <section >
+    <div class="neon-box">
+      <h2>¿Cómo funciona la compatibilidad?</h2>
+      <p>
+        La compatibilidad zodiacal se basa en la energía de los elementos y la afinidad natural entre los signos. 
+        ¡Descubre con quién tienes mejor conexión y comparte tu signo!
+      </p>
+    </div>
+  </section>
+
+    <div class="calcula-signo-box" id="compatibilidad">
+
+<form style="display:flex; flex-direction:column; gap:18px;">
+  <label for="fecha">Fecha de nacimiento:</label>
+  <input type="date" id="fecha" name="fecha" required>
+  <button type="submit">Calcular</button>
+  <div id="resultado-signo"></div>
+</form>
+
+<script>
+const signos = [
+  {
+    nombre: "Aries",
+    inicio: "03-21",
+    fin: "04-19",
+    compatibilidad: "Leo, Sagitario",
+    piedra: "Rubí",
+    frase: "Líder por naturaleza, siempre el primero en actuar."
+  },
+  {
+    nombre: "Tauro",
+    inicio: "04-20",
+    fin: "05-20",
+    compatibilidad: "Virgo, Capricornio",
+    piedra: "Esmeralda",
+    frase: "Constante y paciente, construyo con firmeza."
+  },
+  {
+    nombre: "Géminis",
+    inicio: "05-21",
+    fin: "06-20",
+    compatibilidad: "Libra, Acuario",
+    piedra: "Ágata",
+    frase: "Comunico, pienso y nunca dejo de aprender."
+  },
+  {
+    nombre: "Cáncer",
+    inicio: "06-21",
+    fin: "07-22",
+    compatibilidad: "Escorpio, Piscis",
+    piedra: "Perla",
+    frase: "Protejo a los míos con todo mi corazón."
+  },
+  {
+    nombre: "Leo",
+    inicio: "07-23",
+    fin: "08-22",
+    compatibilidad: "Aries, Sagitario",
+    piedra: "Diamante",
+    frase: "Brillo con fuerza y lidero con pasión."
+  },
+  {
+    nombre: "Virgo",
+    inicio: "08-23",
+    fin: "09-22",
+    compatibilidad: "Tauro, Capricornio",
+    piedra: "Zafiro",
+    frase: "Analizo cada detalle para alcanzar la perfección."
+  },
+  {
+    nombre: "Libra",
+    inicio: "09-23",
+    fin: "10-22",
+    compatibilidad: "Géminis, Acuario",
+    piedra: "Ópalo",
+    frase: "Busco el equilibrio en todo lo que hago."
+  },
+  {
+    nombre: "Escorpio",
+    inicio: "10-23",
+    fin: "11-21",
+    compatibilidad: "Cáncer, Piscis",
+    piedra: "Topacio",
+    frase: "Intenso y profundo, nada se me escapa."
+  },
+  {
+    nombre: "Sagitario",
+    inicio: "11-22",
+    fin: "12-21",
+    compatibilidad: "Aries, Leo",
+    piedra: "Turquesa",
+    frase: "Amo la libertad y siempre busco nuevas aventuras."
+  },
+  {
+    nombre: "Capricornio",
+    inicio: "12-22",
+    fin: "01-19",
+    compatibilidad: "Tauro, Virgo",
+    piedra: "Ónix",
+    frase: "Trabajo duro por mis metas, sin rendirme."
+  },
+  {
+    nombre: "Acuario",
+    inicio: "01-20",
+    fin: "02-18",
+    compatibilidad: "Géminis, Libra",
+    piedra: "Amatista",
+    frase: "Pienso diferente, siempre innovando."
+  },
+  {
+    nombre: "Piscis",
+    inicio: "02-19",
+    fin: "03-20",
+    compatibilidad: "Cáncer, Escorpio",
+    piedra: "Aguamarina",
+    frase: "Sueño, siento y creo en la magia del alma."
+  }
+];
+
+function obtenerSigno(fecha) {
+  const [anio, mes, dia] = fecha.split("-");
+  const md = `${mes.padStart(2, "0")}-${dia.padStart(2, "0")}`;
+  for (let signo of signos) {
+    if (signo.inicio <= signo.fin) {
+      if (md >= signo.inicio && md <= signo.fin) return signo;
+    } else {
+      // Capricornio (cruza el año)
+      if (md >= signo.inicio || md <= signo.fin) return signo;
+    }
+  }
+  return null;
+}
+
+document.querySelector('.calcula-signo-box form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const fecha = document.getElementById('fecha').value;
+  const resultado = document.getElementById('resultado-signo') || (() => {
+    const div = document.createElement('div');
+    div.id = 'resultado-signo';
+    this.parentNode.appendChild(div);
+    return div;
+  }).call(this);
+  if (!fecha) {
+    resultado.textContent = "Por favor, ingresa tu fecha de nacimiento.";
+    return;
+  }
+  const signo = obtenerSigno(fecha);
+  if (signo) {
+    resultado.innerHTML = `
+      <strong>Signo:</strong> ${signo.nombre}<br>
+      <strong>Compatibilidad:</strong> ${signo.compatibilidad}<br>
+      <strong>Piedra:</strong> ${signo.piedra}<br>
+      <strong>Frase:</strong> "${signo.frase}"
+    `;
+  } else {
+    resultado.textContent = "No se pudo determinar el signo.";
+  }
+});
+</script>
+<!-- ...existing code... -->
+
+</div >
+  <div class="signos-info" id="Detalles">
+  <div class="signo-detalle" id="aries">
+    <h3>Aries</h3>
+    <p><strong>Compatibilidad:</strong> Leo, Sagitario</p>
+    <p><strong>Piedra:</strong> Rubí</p>
+    <p><strong>Frase:</strong> "Líder por naturaleza, siempre el primero en actuar."</p>
+  </div>
+  <div class="signo-detalle" id="tauro">
+    <h3>Tauro</h3>
+    <p><strong>Compatibilidad:</strong> Virgo, Capricornio</p>
+    <p><strong>Piedra:</strong> Esmeralda</p>
+    <p><strong>Frase:</strong> "Constante y paciente, construyo con firmeza."</p>
+  </div>
+  <div class="signo-detalle" id="geminis">
+    <h3>Géminis</h3>
+    <p><strong>Compatibilidad:</strong> Libra, Acuario</p>
+    <p><strong>Piedra:</strong> Ágata</p>
+    <p><strong>Frase:</strong> "Comunico, pienso y nunca dejo de aprender."</p>
+  </div>
+  <div class="signo-detalle" id="cancer">
+    <h3>Cáncer</h3>
+    <p><strong>Compatibilidad:</strong> Escorpio, Piscis</p>
+    <p><strong>Piedra:</strong> Perla</p>
+    <p><strong>Frase:</strong> "Protejo a los míos con todo mi corazón."</p>
+  </div>
+  <div class="signo-detalle" id="leo">
+    <h3>Leo</h3>
+    <p><strong>Compatibilidad:</strong> Aries, Sagitario</p>
+    <p><strong>Piedra:</strong> Diamante</p>
+    <p><strong>Frase:</strong> "Brillo con fuerza y lidero con pasión."</p>
+  </div>
+  <div class="signo-detalle" id="virgo">
+    <h3>Virgo</h3>
+    <p><strong>Compatibilidad:</strong> Tauro, Capricornio</p>
+    <p><strong>Piedra:</strong> Zafiro</p>
+    <p><strong>Frase:</strong> "Analizo cada detalle para alcanzar la perfección."</p>
+  </div>
+  <div class="signo-detalle" id="libra">
+    <h3>Libra</h3>
+    <p><strong>Compatibilidad:</strong> Géminis, Acuario</p>
+    <p><strong>Piedra:</strong> Ópalo</p>
+    <p><strong>Frase:</strong> "Busco el equilibrio en todo lo que hago."</p>
+  </div>
+  <div class="signo-detalle" id="escorpio">
+    <h3>Escorpio</h3>
+    <p><strong>Compatibilidad:</strong> Cáncer, Piscis</p>
+    <p><strong>Piedra:</strong> Topacio</p>
+    <p><strong>Frase:</strong> "Intenso y profundo, nada se me escapa."</p>
+  </div>
+  <div class="signo-detalle" id="sagitario">
+    <h3>Sagitario</h3>
+    <p><strong>Compatibilidad:</strong> Aries, Leo</p>
+    <p><strong>Piedra:</strong> Turquesa</p>
+    <p><strong>Frase:</strong> "Amo la libertad y siempre busco nuevas aventuras."</p>
+  </div>
+  <div class="signo-detalle" id="capricornio">
+    <h3>Capricornio</h3>
+    <p><strong>Compatibilidad:</strong> Tauro, Virgo</p>
+    <p><strong>Piedra:</strong> Ónix</p>
+    <p><strong>Frase:</strong> "Trabajo duro por mis metas, sin rendirme."</p>
+  </div>
+  <div class="signo-detalle" id="acuario">
+    <h3>Acuario</h3>
+    <p><strong>Compatibilidad:</strong> Géminis, Libra</p>
+    <p><strong>Piedra:</strong> Amatista</p>
+    <p><strong>Frase:</strong> "Pienso diferente, siempre innovando."</p>
+  </div>
+  <div class="signo-detalle" id="piscis">
+    <h3>Piscis</h3>
+    <p><strong>Compatibilidad:</strong> Cáncer, Escorpio</p>
+    <p><strong>Piedra:</strong> Aguamarina</p>
+    <p><strong>Frase:</strong> "Sueño, siento y creo en la magia del alma."</p>
+  </div>
+</div>
+
+ </div>
+  <!-- Pie de página -->
+  <footer>
+    <p>“El universo no se equivoca, tú estás donde debes estar. Cree en tu energía y en tu camino.”</p>
+  </footer>
+
+
+</body>
+</html>
